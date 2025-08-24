@@ -1,9 +1,7 @@
-name: Run Selenium Pytest
-
-# on: [push, pull_request]
+name: Run Selenium Pytest and Locust
 on:
   push:
-    branches: [master,main]  # ทุก branch ที่ขึ้นต้นด้วย feature/
+    branches: [main]  # ทุก branch ที่ขึ้นต้นด้วย feature/
   pull_request:
     branches: [main]
  
@@ -23,12 +21,13 @@ jobs:
 # ติดตั้ง dependencies
     - name: Install dependencies
       run: |
-        pip install pytest selenium
+        python -m pip install --upgrade pip
         pip install pytest selenium locust
-        pip install -r requirements.txt
  # รัน pytest
     - name: Run tests
       run: |
         pytest -v --maxfail=1 --disable-warnings
       #ถ้าไฟล์อยู่ใน subfolder ให้เพิ่ม path ในคำสั่ง run: pytest tests/ -v --maxfail=1 --disable-warnings
+      #locust -f locustfile.py --headless -u 10 -r 1 --run-time 1m  
+      #-u = จำนวน user, -r = spawn rate, --run-time = ระยะเวลา run
 
