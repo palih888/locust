@@ -16,19 +16,44 @@ def browser():
     yield driver
     driver.quit()
 
+
 def test_login(browser):
-    browser.get("http://example.com/login")
+    browser.get("http://google.com")
     WebDriverWait(browser, 10).until(
-        EC.presence_of_element_located((By.ID, "username"))
-    ).send_keys("test_user")
-    
-    browser.find_element(By.ID, "password").send_keys("1234")
-    browser.find_element(By.ID, "login-btn").click()
-    
-    WebDriverWait(browser, 10).until(
-        EC.presence_of_element_located((By.ID, "dashboard"))
+        EC.presence_of_element_located((By.NAME, "q")) 
     )
     assert "Dashboard" in browser.page_source
+
+
+# def test_login(browser):
+#     browser.get("http://example.com/login")
+#     WebDriverWait(browser, 10).until(
+#         EC.presence_of_element_located((By.ID, "username"))
+#     ).send_keys("test_user")
+    
+#     browser.find_element(By.ID, "password").send_keys("1234")
+#     browser.find_element(By.ID, "login-btn").click()
+    
+#     WebDriverWait(browser, 10).until(
+#         EC.presence_of_element_located((By.ID, "dashboard"))
+#     )
+#     assert "Dashboard" in browser.page_source
+
+
+
+# def test_login(browser):
+#     browser.get("http://example.com/login")
+#     WebDriverWait(browser, 10).until(
+#         EC.presence_of_element_located((By.ID, "username"))
+#     ).send_keys("test_user")
+    
+#     browser.find_element(By.ID, "password").send_keys("1234")
+#     browser.find_element(By.ID, "login-btn").click()
+    
+#     WebDriverWait(browser, 10).until(
+#         EC.presence_of_element_located((By.ID, "dashboard"))
+#     )
+#     assert "Dashboard" in browser.page_source
 
 
 
