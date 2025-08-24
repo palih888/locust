@@ -14,23 +14,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # - name: Install Chrome
-      #   run: |
-      #     sudo apt-get update
-      #     sudo apt-get install -y wget gnupg unzip
-      #     wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-      #     sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-      #     sudo apt-get update
-      #     sudo apt-get install -y google-chrome-stable
-
-      # - name: Install Chromedriver
-      #   run: |
-      #     CHROME_VERSION=$(google-chrome --version | cut -d " " -f3 | cut -d "." -f1)
-      #     DRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION}")
-      #     wget https://chromedriver.storage.googleapis.com/$DRIVER_VERSION/chromedriver_linux64.zip
-      #     unzip chromedriver_linux64.zip
-      #     sudo mv chromedriver /usr/local/bin/
-      #     rm chromedriver_linux64.zip
+      - name: Install Chromedriver
+        run: |
+          npm install chromedriver --save-dev
 
       - name: Set up Python
         uses: actions/setup-python@v5
