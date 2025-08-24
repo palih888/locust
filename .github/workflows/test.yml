@@ -1,33 +1,33 @@
-  name: Run Selenium Pytest and Locust
-  on:
-    push:
-      branches: [main,locust-trigger,master]  # ทุก branch ที่ขึ้นต้นด้วย feature/
-    pull_request:
-      branches: [main]
-  
-  jobs:
-    test:
-      runs-on: ubuntu-latest
+name: Python tests
 
-      steps:
-      # เช็คเอา repository ของเรามา
-      - uses: actions/checkout@v3
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
-  # ติดตั้ง Python
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.10' # เลือกเวอร์ชัน Python
-  # ติดตั้ง dependencies
+          python-version: "3.10"
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install pytest selenium locust
-  # รัน pytest
-      - name: Run tests
+
+      - name: Run Pytest (Selenium tests)
         run: |
           pytest -v --maxfail=1 --disable-warnings
-        #ถ้าไฟล์อยู่ใน subfolder ให้เพิ่ม path ในคำสั่ง run: pytest tests/ -v --maxfail=1 --disable-warnings
-        #locust -f locustfile.py --headless -u 10 -r 1 --run-time 1m  
-        #-u = จำนวน user, -r = spawn rate, --run-time = ระยะเวลา run
 
+      - name: Run Locust (headless load test)
+        run: |
+          locust -f test_locustfile.py --headless -u 5 -r 1 -t 10s
