@@ -35,19 +35,19 @@ class WebsiteUser(HttpUser):
     def about(self):
         self.client.get("/about")
         
-# def test_homepage_stress():
-#     for _ in range(50):  # simulate 50 refresh
-#         driver = webdriver.Chrome()
-#         driver.get("http://example.com/")
-#         assert "Welcome" in driver.page_source
-#         driver.quit()
+def test_homepage_stress():
+    for _ in range(50):  # simulate 50 refresh
+        driver = webdriver.Chrome()
+        driver.get("http://example.com/")
+        assert "Welcome" in driver.page_source
+        driver.quit()
         
 
-def test_sanity():
-    driver = webdriver.Chrome()
-    driver.get("http://example.com")
-    assert "Example" in driver.title
-    driver.quit()
+# def test_sanity():
+#     driver = webdriver.Chrome()
+#     driver.get("http://example.com")
+#     assert "Example" in driver.title
+#     driver.quit()
     
     
 # def test_sql_injection():
