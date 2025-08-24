@@ -1,3 +1,11 @@
+
+# from selenium import webdriver
+from selenium.webdriver.common.by import By
+
+# driver = webdriver.Chrome()  # ChromeDriver ต้องอยู่ใน PATH
+# driver.get("https://www.google.com")
+# driver.quit()
+
 from locust import HttpUser, task, between
 
 # สร้าง class User (จำลองผู้ใช้งาน 1 คน)
